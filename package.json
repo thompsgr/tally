@@ -1,0 +1,22 @@
+{
+  "name": "tally",
+  "version": "0.0.1",
+  "description": "javascript object for tallying/counting",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@avaion.github.com:thompsgr/tally.git"
+  },
+  "keywords": [
+    "javascript",
+    "modules"
+  ],
+  "author": "Geoff Thompson",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^7.1.1"
+  }
+}
