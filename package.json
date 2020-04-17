@@ -1,6 +1,6 @@
 {
   "name": "@avaion/tally",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "javascript object for tallying/counting",
   "main": "index.js",
   "scripts": {
