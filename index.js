@@ -79,11 +79,12 @@ function tally(name = 'Tally') {
 
 		function log() {
 				let s = `${name} \n`;
-				let keys = Object.keys(tallies);
+        let sorted = items();
+				let keys = Object.keys(sorted);
 				let label_length = longest(keys) + 3;
-				let value_length = (arePercentages) ? 7 : longest(Object.values(tallies)) ;
+				let value_length = (arePercentages) ? 7 : longest(Object.values(sorted)) ;
 				keys.forEach(function(k) {
-						v = (arePercentages) ? tallies[k].toFixed(2) + '%' : tallies[k].toString() ;
+						v = (arePercentages) ? sorted[k].toFixed(2) + '%' : sorted[k].toString() ;
 						s += `${k.padEnd(label_length, '.')}: ${v.padStart(value_length,' ')} \n`;
 				});
 				return s;
