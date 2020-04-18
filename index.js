@@ -77,6 +77,14 @@ function tally(name = 'Tally') {
     }
   }
 
+  function formatThousands(int) {
+    return int.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+
+  function formatPercent(pct) {
+    return pct.toFixed(2)+"%";
+  }
+
   function log() {
     let s = `${name} \n`;
     let sorted = items();
@@ -84,7 +92,7 @@ function tally(name = 'Tally') {
     let label_length = longest(keys) + 3;
     let value_length = (arePercentages) ? 7 : longest(Object.values(sorted)) ;
     keys.forEach(function(k) {
-      v = (arePercentages) ? sorted[k].toFixed(2) + '%' : sorted[k].toString() ;
+      v = (arePercentages) ? formatPercent(sorted[k]) : formatThousands(sorted[k]) ;
       s += `${k.padEnd(label_length, '.')}: ${v.padStart(value_length,' ')} \n`;
     });
     return s;
