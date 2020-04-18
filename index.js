@@ -90,7 +90,7 @@ function tally(name = 'Tally') {
     let sorted = items();
     let keys = Object.keys(sorted);
     let label_length = longest(keys) + 3;
-    let value_length = (arePercentages) ? 7 : formatThousands(longest(Object.values(sorted))).length ;
+    let value_length = (arePercentages) ? 7 : formatThousands(longest(Object.values(sorted))) ;
     keys.forEach(function(k) {
       v = (arePercentages) ? formatPercent(sorted[k]) : formatThousands(sorted[k]) ;
       s += `${k.padEnd(label_length, '.')}: ${v.padStart(value_length,' ')} \n`;
