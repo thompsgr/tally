@@ -69,7 +69,7 @@ function tally(name = 'Tally') {
   }
 
   function longest(arr) {
-    if (allNumeric(arr)) {
+    if (allNumeric(arr) && arr.length > 0) {
       return arr.reduce(function(a, b) { return a > b ? a : b }).toString().length;
     }
     else {
