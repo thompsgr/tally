@@ -57,7 +57,7 @@ function tally(name = 'Tally') {
   }
 
   function map(cols) {
-    let mapped = {}, k = ''
+    let mapped = {}, k = '';
     let index_pad = (cols.length < 100) ? 2 : 3 ;
     cols.forEach(function(c,i) {
       k = `${i.toString().padStart(index_pad,'0')}-${c}`;
@@ -68,8 +68,20 @@ function tally(name = 'Tally') {
     return me;
   }
 
+  function over(floor) {
+    let passed = {};
+    Object.keys(tallies).forEach(function(k) {
+      if (tallies[k] > floor) {
+        passed[k] = tallies[k];
+      }
+    });
+    tallies = Object.assign({},passed);
+    return me;
+  }
+
   function longest(arr) {
-    if (allNumeric(arr) && arr.length > 0) {
+    if (arr.length === 0) return 0;
+    if (allNumeric(arr)) {
       return arr.reduce(function(a, b) { return a > b ? a : b }).toString().length;
     }
     else {
@@ -89,12 +101,17 @@ function tally(name = 'Tally') {
     let s = `${name} \n`;
     let sorted = items();
     let keys = Object.keys(sorted);
-    let label_length = longest(keys) + 3;
-    let value_length = (arePercentages) ? 7 : formatThousands(longest(Object.values(sorted))) ;
-    keys.forEach(function(k) {
-      v = (arePercentages) ? formatPercent(sorted[k]) : formatThousands(sorted[k]) ;
-      s += `${k.padEnd(label_length, '.')}: ${v.padStart(value_length,' ')} \n`;
-    });
+    if (keys.length === 0) {
+      s += '..nothing tallied! \n';
+    }
+    else {
+      let label_length = longest(keys) + 3;
+      let value_length = (arePercentages) ? 7 : formatThousands(longest(Object.values(sorted))) ;
+      keys.forEach(function(k) {
+        v = (arePercentages) ? formatPercent(sorted[k]) : formatThousands(sorted[k]) ;
+        s += `${k.padEnd(label_length, '.')}: ${v.padStart(value_length,' ')} \n`;
+       });
+    }
     return s;
   }
 
@@ -105,6 +122,7 @@ function tally(name = 'Tally') {
     total: total,
     percent: percent,
     map: map,
+    over: over,
     log: log
   }
 
