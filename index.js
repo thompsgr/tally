@@ -102,7 +102,7 @@ function tally(name = 'Tally') {
     let sorted = items();
     let keys = Object.keys(sorted);
     if (keys.length === 0) {
-      s += '..nothing tallied! \n';
+      s += '..none \n';
     }
     else {
       let label_length = longest(keys) + 3;
